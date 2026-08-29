@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoリスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow p-8 w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-6">todoリスト</h1>
+
+            <div class="mb-4 flex gap-2">
+                <input id="taskInput" type="text" placeholder="タスクを入力"
+                    class="w-full border border-gray-300 rounded px-3 py-2">
+
+            <button id="addBtn"
+                class="bg-blue-600 text-white font-bold px-10 py-2 rounded hover:bg-blue-700 transition">
+                追加　　
+            </button>
+            </div>
+
+            <ul id="taskList" class="mt-6 list-disc pl-5"></ul>
+        </div>
+    </div>
+
+    <script>
+        const addButton = document.querySelector("#addBtn");
+        const todoInput = document.querySelector("#taskInput");
+        const taskList = document.querySelector("#taskList");
+
+        addButton.addEventListener("click", () => {
+            const taskText = todoInput.value;
+            if (taskText === "") {
+                alert("タスクを入力してください");
+                return;
+            }
+            const item = document.createElement("li");
+            item.className = "flex items-center justify-between bg-gray-50 rounded px-3 py-2 w-full";
+            const span = document.createElement("span");
+            span.textContent = taskText;
+
+            const doneBtn = document.createElement("button");
+        doneBtn.textContent = "完了";
+        doneBtn.className = "text-sm text-gray-500 hover:text-red-500";
+
+        doneBtn.addEventListener("click", () => {
+            span.classList.toggle("line-through");
+            span.classList.toggle("text-gray-400");
+        });
+        item.appendChild(span);
+        item.appendChild(doneBtn);
+        taskList.appendChild(item);
+        todoInput.value = "";
+        todoInput.focus();
+        });
+    </script>
+</body>
+</html>
