@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+    <h1 class="text-2xl font-bold mb-6">チームメンバー</h1>
+    <div id="memberList" class="grid gap-4"></div>
+
+    <script>
+      const members = [
+        { name: "花輪和彦", role: "デザイナー", comment: "UIにこだわっています" },
+        { name: "みぎわ花子", role: "エンジニア", comment: "バックエンドが得意です" },
+        { name: "浜崎憲孝", role: "PdM", comment: "ユーザー視点を大切に" },
+        { name: "穂波たまえ", role: "カメラマン", comment: "カメラが友達" },
+        { name: "さくらももこ", role: "アイデアマン", comment: "バレなきゃ犯罪じゃない" },
+      ];
+
+      const memberList = document.getElementById("memberList");
+
+      members.forEach((member) => {
+        // カード要素を作る
+        const card = document.createElement("div");
+        card.className = "bg-white rounded shadow p-4";
+
+        // カードの中身を設定する
+        card.innerHTML = `
+          <h2 class="text-lg font-bold">${member.name}</h2>
+          <p class="text-blue-600 text-sm">${member.role}</p>
+          <p class="text-gray-600 mt-2">${member.comment}</p>
+        `;
+
+        // リストに追加する
+        memberList.appendChild(card);
+      });
+    </script>
+</body>
+</html>
